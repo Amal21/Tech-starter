@@ -9,6 +9,7 @@ function ProjectSelection() {
   useEffect(() => {
     const fetchProjects = async () => {
       const token = localStorage.getItem("token");
+      console.log("Token:", token);
       try {
         const response = await axios.get("http://localhost:3001/projects", {
           headers: { Authorization: `Bearer ${token}` },
@@ -30,18 +31,20 @@ function ProjectSelection() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl mb-6">Select your project</h1>
-      <div className="flex">
-        {projects.map((project) => (
-          <button
-            key={project.id}
-            onClick={() => handleProjectSelect(project)}
-            className="btn-primary m-2"
-          >
-            {project.name}
-          </button>
-        ))}
+    <div className="flex items-center justify-center w-full h-full">
+      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md mx-auto">
+        <h1 className="text-2xl mb-6 text-center">Select your project</h1>
+        <div className="flex flex-col">
+          {projects.map((project) => (
+            <button
+              key={project.id}
+              onClick={() => handleProjectSelect(project)}
+              className="mb-4 bg-transparent hover:bg-blue-100 text-blue-500 font-semibold hover:text-blue py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            >
+              {project.name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

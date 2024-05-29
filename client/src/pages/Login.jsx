@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Card from "../components/Card";
+import Button from "../components/Button";
 
-function Login() {
+function Login({ setUsername }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setUsername(null);
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    localStorage.removeItem("currentStep");
+  }, [setUsername]);
 
   const handleLogin = async (username) => {
     try {
@@ -13,6 +22,7 @@ function Login() {
       const token = response.data.jwt;
       localStorage.setItem("token", token);
       localStorage.setItem("username", username);
+      setUsername(username);
       navigate("/projects");
     } catch (error) {
       console.error("Login failed", error);
@@ -20,17 +30,18 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl mb-6">Login</h1>
-      <button onClick={() => handleLogin("john")} className="btn-primary">
-        Login as John
-      </button>
-      <button
-        onClick={() => handleLogin("sophia")}
-        className="btn-primary mt-4"
-      >
-        Login as Sophia
-      </button>
+    <div className="flex items-center justify-center w-full h-full">
+      <Card>
+        <h1 className="text-2xl mb-6 text-center">Login</h1>
+        <div className="flex justify-between">
+          <Button onClick={() => handleLogin("john")} className="w-1/2 mr-2">
+            Login as John
+          </Button>
+          <Button onClick={() => handleLogin("sophia")} className="w-1/2 ml-2">
+            Login as Sophia
+          </Button>
+        </div>
+      </Card>
     </div>
   );
 }

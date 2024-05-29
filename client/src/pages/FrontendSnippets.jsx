@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "../components/Card";
+import Button from "../components/Button";
 
 function FrontendSnippets() {
   const navigate = useNavigate();
@@ -16,19 +18,19 @@ function FrontendSnippets() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl mb-6">{frontend}: 1. Basic setup</h1>
-      <pre className="bg-gray-200 p-4 rounded w-1/2">
-        /* Code snippet for {frontend} */
-      </pre>
-      <div className="mt-6">
-        <button onClick={handleBack} className="btn-secondary mr-4">
-          Back
-        </button>
-        <button onClick={handleContinue} className="btn-primary">
-          Continue
-        </button>
-      </div>
+    <div className="flex items-center justify-center w-full h-full">
+      <Card>
+        <h1 className="text-2xl mb-6 text-center">{frontend}: Basic setup</h1>
+        <pre className="bg-gray-200 p-4 rounded mb-6">
+          /* Code snippet for {frontend} */
+        </pre>
+        <div className="flex justify-between">
+          <Button onClick={handleBack} className="mr-4">
+            Back
+          </Button>
+          <Button onClick={handleContinue}>Continue</Button>
+        </div>
+      </Card>
     </div>
   );
 }

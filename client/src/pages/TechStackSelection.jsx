@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "../components/Card";
+import Button from "../components/Button";
 
 function TechStackSelection() {
   const [frontend, setFrontend] = useState("");
@@ -14,51 +16,55 @@ function TechStackSelection() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl mb-6">Select your tech stack</h1>
-      <div className="flex flex-col">
-        <div className="mb-4">
+    <div className="flex items-center justify-center w-full h-full">
+      <Card>
+        <h1 className="text-2xl mb-6 text-center">Select your tech stack</h1>
+        <div className="flex flex-col mb-4">
           <label className="block mb-2">Frontend</label>
-          <button
-            onClick={() => setFrontend("React")}
-            className={`btn-primary ${
-              frontend === "React" ? "bg-blue-500" : ""
-            }`}
-          >
-            React
-          </button>
-          <button
-            onClick={() => setFrontend("VanillaJS")}
-            className={`btn-primary ml-4 ${
-              frontend === "VanillaJS" ? "bg-blue-500" : ""
-            }`}
-          >
-            VanillaJS
-          </button>
+          <div className="flex">
+            <button
+              onClick={() => setFrontend("React")}
+              className={`flex-1 mr-2 mb-4 bg-transparent hover:bg-blue-100 text-blue-500 font-semibold hover:text-blue py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+                frontend === "React" ? "bg-blue-700 text-white" : ""
+              }`}
+            >
+              React
+            </button>
+            <button
+              onClick={() => setFrontend("VanillaJS")}
+              className={`flex-1 mb-4 bg-transparent hover:bg-blue-100 text-blue-500 font-semibold hover:text-blue py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+                frontend === "VanillaJS" ? "bg-blue-700 text-white" : ""
+              }`}
+            >
+              VanillaJS
+            </button>
+          </div>
         </div>
-        <div className="mb-4">
+        <div className="flex flex-col mb-4">
           <label className="block mb-2">Backend</label>
-          <button
-            onClick={() => setBackend("Golang")}
-            className={`btn-primary ${
-              backend === "Golang" ? "bg-blue-500" : ""
-            }`}
-          >
-            Golang
-          </button>
-          <button
-            onClick={() => setBackend("PHP")}
-            className={`btn-primary ml-4 ${
-              backend === "PHP" ? "bg-blue-500" : ""
-            }`}
-          >
-            PHP
-          </button>
+          <div className="flex">
+            <button
+              onClick={() => setBackend("Golang")}
+              className={`flex-1 mr-2 mb-4 bg-transparent hover:bg-blue-100 text-blue-500 font-semibold hover:text-blue py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+                backend === "Golang" ? "bg-blue-700 text-white" : ""
+              }`}
+            >
+              Golang
+            </button>
+            <button
+              onClick={() => setBackend("PHP")}
+              className={`flex-1 mb-4 bg-transparent hover:bg-blue-100 text-blue-500 font-semibold hover:text-blue py-2 px-4 border border-blue-500 hover:border-transparent rounded ${
+                backend === "PHP" ? "bg-blue-700 text-white" : ""
+              }`}
+            >
+              PHP
+            </button>
+          </div>
         </div>
-        <button onClick={handleNext} className="btn-primary mt-6">
+        <Button onClick={handleNext} className="w-full mt-6">
           Next
-        </button>
-      </div>
+        </Button>
+      </Card>
     </div>
   );
 }

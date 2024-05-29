@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - JWT_SECRET=S6y%]sb"B<M098KfKa%
+      - PROJECT_API_URL=http://projectapi:8081
+      - PROJECT_API_USERNAME=admin
+      - PROJECT_API_PASSWORD=admin
+
+  projectapi:
+    image: projectapi:latest
+    ports:
+      - "8081:8081"
+    environment:
+      - PROJECT_API_USERNAME=admin
+      - PROJECT_API_PASSWORD=admin
